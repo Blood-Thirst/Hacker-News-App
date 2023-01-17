@@ -6,11 +6,22 @@ import InputLabel from "@mui/material/InputLabel";
 import { NewsState } from "../NewsContext";
 
 const Filter = () => {
-  const { searchResult, categoryResult } = NewsState();
+  const { searchResult, categoryResult, timeResult, searchByDateResult } =
+    NewsState();
   const [category, setCategory] = categoryResult;
+  const [time, setTime] = timeResult;
+  const [searchByDate, setSearchByDate] = searchByDateResult;
 
-  const handleChange = (event) => {
+  const handleCategoryChange = (event) => {
     setCategory(event.target.value);
+  };
+
+  const handleTimeChange = (event) => {
+    setTime(event.target.value);
+  };
+
+  const handleSortChange = (event) => {
+    setSearchByDate(event.target.value);
   };
 
   return (
@@ -23,9 +34,9 @@ const Filter = () => {
           id="demo-select-small"
           value={category}
           label="Filter by"
-          onChange={handleChange}
+          onChange={handleCategoryChange}
         >
-          <MenuItem value={""}>All</MenuItem>
+          <MenuItem value={"(story,comment)"}>All</MenuItem>
           <MenuItem value={"story"}>Stories</MenuItem>
           <MenuItem value={"comment"}>Comments</MenuItem>
         </Select>
@@ -36,12 +47,12 @@ const Filter = () => {
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
-          value={category}
+          value={searchByDate}
           label="Filter by"
-          onChange={handleChange}
+          onChange={handleSortChange}
         >
-          <MenuItem value={""}>Popularity</MenuItem>
-          <MenuItem value={"search_by_date"}>Date</MenuItem>
+          <MenuItem value={false}>Popularity</MenuItem>
+          <MenuItem value={true}>Date</MenuItem>
         </Select>
       </FormControl>
       for
@@ -50,16 +61,15 @@ const Filter = () => {
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
-          value={category}
+          value={time}
           label="Filter by"
-          onChange={handleChange}
+          onChange={handleTimeChange}
         >
-          <MenuItem value={"story"}>All Time</MenuItem>
-          <MenuItem value={"comment"}>Past 24h</MenuItem>
-          <MenuItem value={"story"}>Past Week</MenuItem>
-          <MenuItem value={"comment"}>Past Month</MenuItem>
-          <MenuItem value={"story"}>Past Year</MenuItem>
-          <MenuItem value={"comment"}>Custom range</MenuItem>
+          <MenuItem value={0}>All Time</MenuItem>
+          <MenuItem value={86400}>Past 24h</MenuItem>
+          <MenuItem value={604800}>Past Week</MenuItem>
+          <MenuItem value={2628000}>Past Month</MenuItem>
+          <MenuItem value={31540000}>Past Year</MenuItem>
         </Select>
       </FormControl>
     </div>

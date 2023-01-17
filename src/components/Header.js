@@ -21,7 +21,7 @@ import "./components.css";
 // }));
 
 const Header = () => {
-  const {searchResult,categoryResult} = NewsState();
+  const {searchResult,categoryResult,timeResult, searchByDateResult} = NewsState();
   const [search, setSearch ] = searchResult;
   return (
     <div backgroundcolor="red">

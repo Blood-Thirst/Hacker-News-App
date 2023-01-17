@@ -20,15 +20,17 @@ const NewsTable = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const { searchResult, categoryResult } = NewsState();
+  const { searchResult, categoryResult,timeResult, searchByDateResult } = NewsState();
   const [search, setSearch] = searchResult;
   const [category, setCategory] = categoryResult;
+  const [time,setTime] = timeResult;
+  const [searchByDate, setSearchByDate] = searchByDateResult;
   const [count, setCount] = useState(0);
   //const [searchedNews, setSearchedNews] = useState([]);
 
   const fetchNews = async () => {
     setLoading(true);
-    const { data } = await axios.get(News(search, category));
+    const { data } = await axios.get(News(search, category,time,searchByDate));
     setNews(data.hits);
     setLoading(false);
   };
@@ -36,18 +38,23 @@ const NewsTable = () => {
   useEffect(() => {
     fetchNews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, category]);
+  }, [search, category,time,searchByDate]);
 
   function handleSearch() {
     console.log("Category: " + category);
     console.log("search: " + search);
     console.log(news.length);
     var arr = news.filter((item) => {
-      if (category == "comment") console.log(item);
-      if (category == "comment" && item.comment_text)
-        return item.comment_text.toLocaleLowerCase().includes(search);
-      if (!item.title) return false;
+      console.log(item.comment_text)
+      if (item.title!=null)
       return item.title.toLocaleLowerCase().includes(search);
+      if (item.comment_text!=null)
+        return item.comment_text.toLocaleLowerCase().includes(search);
+        // if (item.title)
+        // return item.title.toLocaleLowerCase().includes(search);
+        // if (item.title)
+        // return item.title.toLocaleLowerCase().includes(search);
+      return false;
     });
     searchedNews = arr;
     console.log(searchedNews.length);
@@ -82,7 +89,7 @@ const NewsTable = () => {
                       <div>
                         <span style={{ fontSize: 14, fontWeight: "bold" }}>
                           {" "}
-                          {category == "comment"
+                          {(row.comment_text!=null)
                             ? row.comment_text
                             : row.title}{" "}
                         </span>
