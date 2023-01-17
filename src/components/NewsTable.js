@@ -49,15 +49,12 @@ const NewsTable = () => {
     console.log("search: " + search);
     console.log(news.length);
     var arr = news.filter((item) => {
-      console.log(item.comment_text);
+      //console.log(item.comment_text);
+      console.log(item.title);
       if (item.title != null)
-        return item.title.toLocaleLowerCase().includes(search);
+        return item.title.toLocaleLowerCase();
       if (item.comment_text != null)
-        return item.comment_text.toLocaleLowerCase().includes(search);
-      // if (item.title)
-      // return item.title.toLocaleLowerCase().includes(search);
-      // if (item.title)
-      // return item.title.toLocaleLowerCase().includes(search);
+        return item.comment_text.toLocaleLowerCase();
       return false;
     });
     searchedNews = arr;

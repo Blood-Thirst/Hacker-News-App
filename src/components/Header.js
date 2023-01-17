@@ -49,7 +49,6 @@ const Header = () => {
               <Grid item xs={10}>
                 <TextField
                   className="text"
-                  label="Search For News"
                   variant="outlined"
                   style={{
                     width: "100%",
