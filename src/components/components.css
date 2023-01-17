@@ -1,3 +1,29 @@
-.link{
-    
+a:link {
+  color: #828282;
+  text-decoration: none;
+}
+
+
+a:visited {
+  color: #828282;
+  /* text-decoration: underline; */
+}
+
+/* mouse over link */
+a:hover {
+  color: #828282;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #828282;
+  /* text-decoration: underline; */
+}
+
+tr {
+  height: 19px;
+}
+
+tr td {
+  height: auto !important;
 }
