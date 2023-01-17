@@ -4,7 +4,7 @@ import NewsTable from "../src/components/NewsTable";
 import Filter from "./components/Filter";
 function App() {
   return (
-    <div className="App" style={{ marginLeft: "2%" }}>
+    <div className="App" style={{ marginLeft: "0%" }}>
       <Header />
       <Filter />
       <NewsTable />

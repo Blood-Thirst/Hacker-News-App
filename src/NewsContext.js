@@ -18,7 +18,7 @@ const NewsContext = ({ children }) => {
         searchResult: [search, setSearch],
         categoryResult: [category, setCategory],
         timeResult: [time, setTime],
-        searchByDateResult:[searchByDate,setSearchByDate]
+        searchByDateResult: [searchByDate, setSearchByDate],
       }}
     >
       {children}

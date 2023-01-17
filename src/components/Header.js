@@ -7,6 +7,8 @@ import {
   Select,
   Navigate,
   TextField,
+  Stack,
+  Grid,
 } from "@mui/material";
 import React, { useState } from "react";
 import { NewsState } from "../NewsContext";
@@ -21,35 +23,46 @@ import "./components.css";
 // }));
 
 const Header = () => {
-  const {searchResult,categoryResult,timeResult, searchByDateResult} = NewsState();
-  const [search, setSearch ] = searchResult;
+  const { searchResult, categoryResult, timeResult, searchByDateResult } =
+    NewsState();
+  const [search, setSearch] = searchResult;
   return (
-    <div backgroundcolor="red">
+    <div>
       <StyledEngineProvider injectFirst>
         <AppBar
           color="transparent"
           position="static"
           sx={{ bgcolor: "#FF742B" }}
         >
-          <Container>
-            <Toolbar>
-              <Typography variant="h6" className="title">
-                Hacker News
-              </Typography>
-              <TextField
-                label="Search For News"
-                variant="outlined"
-                style={{
-                  // marginBottom: 20,
-                  width: "100%",
-                  backgroundColor: "white",
-                }}
-                onChange={(e) => {
-                  setSearch(e.target.value.toLocaleLowerCase());
-                }}
-              />
-            </Toolbar>
-          </Container>
+          <Toolbar>
+            <Grid container spacing={4}>
+              <Grid item>
+                <Stack>
+                  <Typography variant="h6" display="inline" className="title">
+                    Search
+                  </Typography>
+                  <Typography variant="h6" display="inline" className="title-1">
+                    Hacker News
+                  </Typography>
+                </Stack>
+              </Grid>
+              <Grid item xs={10}>
+                <TextField
+                  className="text"
+                  label="Search For News"
+                  variant="outlined"
+                  style={{
+                    width: "100%",
+                    backgroundColor: "white",
+                    marginTop: 3,
+                  }}
+                  onChange={(e) => {
+                    setSearch(e.target.value.toLocaleLowerCase());
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </Toolbar>
         </AppBar>
       </StyledEngineProvider>
     </div>
