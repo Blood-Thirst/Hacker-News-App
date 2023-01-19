@@ -89,7 +89,12 @@ const NewsTable = () => {
               {handleSearch().map((row) => {
                 return (
                   <Card
-                    style={{ marginTop: 10, marginLeft: 10, marginRight: 10 }}
+                    style={{
+                      marginTop: 8,
+                      marginLeft: 10,
+                      marginRight: 10,
+                      marginBottom: 8,
+                    }}
                     sx={{ width: "99%" }}
                   >
                     <CardContent style={{ paddingBottom: 5, paddingTop: 5 }}>
@@ -162,6 +167,7 @@ const NewsTable = () => {
         )}
       </TableContainer>
       <Pagination
+        style={{ padding: 10 }}
         count={parseInt((searchedNews.length + 9) / 10)}
         page={page}
         onChange={handlePaginationChange}
