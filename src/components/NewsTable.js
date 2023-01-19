@@ -12,6 +12,10 @@ import {
   ThemeProvider,
   Typography,
   LinearProgress,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
 } from "@mui/material";
 import axios from "axios";
 import { News } from "../api";
@@ -51,8 +55,7 @@ const NewsTable = () => {
     var arr = news.filter((item) => {
       //console.log(item.comment_text);
       console.log(item.title);
-      if (item.title != null)
-        return item.title.toLocaleLowerCase();
+      if (item.title != null) return item.title.toLocaleLowerCase();
       if (item.comment_text != null)
         return item.comment_text.toLocaleLowerCase();
       return false;
@@ -77,7 +80,7 @@ const NewsTable = () => {
 
   return (
     <div>
-      <TableContainer style={{ backgroundColor: "#F6F6EF" }}>
+      <TableContainer style={{ backgroundColor: "#F4F5FF" }}>
         {loading ? (
           <LinearProgress style={{ backgroundColor: "gold" }} />
         ) : (
@@ -85,7 +88,43 @@ const NewsTable = () => {
             <TableBody>
               {handleSearch().map((row) => {
                 return (
-                  <TableRow>
+                  <Card
+                    style={{ marginTop: 10, marginLeft: 10, marginRight: 10 }}
+                    sx={{ width: "99%" }}
+                  >
+                    <CardContent style={{ paddingBottom: 5, paddingTop: 5 }}>
+                      <Typography
+                        sx={{ fontSize: 14 }}
+                        color="text.secondary"
+                        gutterBottom
+                      >
+                        {row.comment_text != null ? row.comment_text : ""}
+                      </Typography>
+                      <Typography variant="h6" component="div">
+                        {row.title != null ? row.title : ""}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {row.points} points | {row.author} |{" "}
+                        {dateDiff(row.created_at.slice(0, 4))} years ago |{" "}
+                        {row.num_comments} comments
+                      </Typography>
+                      {row.url ? (
+                        <Button
+                          size="small"
+                          style={{
+                            marginLeft: -4,
+                            marginTop: -10,
+                            color: "#FF742B",
+                          }}
+                          href={row.url}
+                        >
+                          <h5>Learn More</h5>
+                        </Button>
+                      ) : null}
+                    </CardContent>
+                  </Card>
+
+                  /* <TableRow>
                     <TableCell>
                       <div>
                         <span style={{ fontSize: 14, fontWeight: "bold" }}>
@@ -103,7 +142,7 @@ const NewsTable = () => {
                         >
                           {" "}
                           {row.url ? (
-                            <a href="/" style={{ color: "" }}>
+                            <a href="/">
                               {"(" + row.url + ")"}
                             </a>
                           ) : null}{" "}
@@ -115,7 +154,7 @@ const NewsTable = () => {
                         {row.num_comments} comments
                       </div>
                     </TableCell>
-                  </TableRow>
+                  </TableRow>*/
                 );
               })}
             </TableBody>

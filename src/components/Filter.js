@@ -4,6 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { NewsState } from "../NewsContext";
+import "../components/components.css";
 
 const Filter = () => {
   const { searchResult, categoryResult, timeResult, searchByDateResult } =
@@ -25,15 +26,14 @@ const Filter = () => {
   };
 
   return (
-    <div>
-      Search
+    <div className="filter">
+      <h4>Search</h4>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="demo-select-small"></InputLabel>
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
           value={category}
-          label="Filter by"
           onChange={handleCategoryChange}
         >
           <MenuItem value={"(story,comment)"}>All</MenuItem>
@@ -41,28 +41,26 @@ const Filter = () => {
           <MenuItem value={"comment"}>Comments</MenuItem>
         </Select>
       </FormControl>
-      by
+      <h4>by</h4>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="demo-select-small"></InputLabel>
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
           value={searchByDate}
-          label="Filter by"
           onChange={handleSortChange}
         >
           <MenuItem value={false}>Popularity</MenuItem>
           <MenuItem value={true}>Date</MenuItem>
         </Select>
       </FormControl>
-      for
+      <h4>for</h4>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="demo-select-small"></InputLabel>
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
           value={time}
-          label="Filter by"
           onChange={handleTimeChange}
         >
           <MenuItem value={0}>All Time</MenuItem>

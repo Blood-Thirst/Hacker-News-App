@@ -3,7 +3,6 @@ a:link {
   text-decoration: none;
 }
 
-
 a:visited {
   color: #828282;
   /* text-decoration: underline; */
@@ -26,4 +25,32 @@ tr {
 
 tr td {
   height: auto !important;
+}
+
+input::placeholder {
+  font-weight: 700;
+}
+
+img {
+  height: 60px;
+  width: 60px;
+}
+
+h4 {
+  display: inline-block;
+  margin-top: 17.5px;
+  margin-left: 5px;
+  font-weight: 550;
+}
+
+.whitefont {
+  color: white;
+}
+
+table {
+  border: 0px;
+}
+
+.filter {
+  padding-left: 15px;
 }
