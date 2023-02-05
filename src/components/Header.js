@@ -1,11 +1,8 @@
 import {
   AppBar,
   StyledEngineProvider,
-  Container,
   Toolbar,
   Typography,
-  Select,
-  Navigate,
   TextField,
   Stack,
   Grid,
@@ -14,14 +11,6 @@ import React, { useState } from "react";
 import { NewsState } from "../NewsContext";
 import "./components.css";
 import SearchIcon from "@mui/icons-material/Search";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     "& .MuiFilledInput-root": {
-//       background: "rgb(232, 241, 250)"
-//     }
-//   }
-// }));
 
 const Header = () => {
   const { searchResult, categoryResult, timeResult, searchByDateResult } =

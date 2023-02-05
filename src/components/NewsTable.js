@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./components.css";
 import {
-  Container,
   Pagination,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
-  TableRow,
-  TextField,
-  ThemeProvider,
   Typography,
   LinearProgress,
   Card,
-  CardActions,
   CardContent,
   Button,
 } from "@mui/material";
@@ -32,7 +26,6 @@ const NewsTable = () => {
   const [time, setTime] = timeResult;
   const [searchByDate, setSearchByDate] = searchByDateResult;
   const [count, setCount] = useState(0);
-  //const [searchedNews, setSearchedNews] = useState([]);
 
   const fetchNews = async () => {
     setLoading(true);
@@ -45,7 +38,6 @@ const NewsTable = () => {
 
   useEffect(() => {
     fetchNews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, category, time, searchByDate]);
 
   function handleSearch() {
@@ -53,7 +45,6 @@ const NewsTable = () => {
     console.log("search: " + search);
     console.log(news.length);
     var arr = news.filter((item) => {
-      //console.log(item.comment_text);
       console.log(item.title);
       if (item.title != null) return item.title.toLocaleLowerCase();
       if (item.comment_text != null)
@@ -62,7 +53,6 @@ const NewsTable = () => {
     });
     searchedNews = arr;
     console.log(searchedNews.length);
-    //setSearchedNews(arr);
     return arr.length <= 10 ? arr : arr.slice(count * 10, (count + 1) * 10);
   }
   var currentTime = new Date();
@@ -128,38 +118,6 @@ const NewsTable = () => {
                       ) : null}
                     </CardContent>
                   </Card>
-
-                  /* <TableRow>
-                    <TableCell>
-                      <div>
-                        <span style={{ fontSize: 14, fontWeight: "bold" }}>
-                          {" "}
-                          {row.comment_text != null
-                            ? row.comment_text
-                            : row.title}{" "}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: 13,
-                            color: "#828282",
-                            textDecoration: "none",
-                          }}
-                        >
-                          {" "}
-                          {row.url ? (
-                            <a href="/">
-                              {"(" + row.url + ")"}
-                            </a>
-                          ) : null}{" "}
-                        </span>
-                      </div>
-                      <div style={{ color: "#696969", fontSize: 10.66 }}>
-                        {row.points} points | {row.author} |{" "}
-                        {dateDiff(row.created_at.slice(0, 4))} years ago |{" "}
-                        {row.num_comments} comments
-                      </div>
-                    </TableCell>
-                  </TableRow>*/
                 );
               })}
             </TableBody>
